@@ -8,13 +8,12 @@
     android:background="#e8f4f8"
     android:orientation="vertical"
     android:padding="16dp">
-
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="Weather App AME"
-        android:textSize="40sp" />
+        android:textSize="40sp"
+        android:text="Weather APP"/>
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -41,15 +40,22 @@
             android:background="#0070c7"
             android:textColor="@android:color/white"
             android:onClick="getWeatherDetails"
-            android:text="Get"
+            android:text="Get Weather"
             app:backgroundTint="@null" />
         <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="150dp">
+            android:layout_height="50dp">
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/tvResult" />
         </ScrollView>
+
+        <ImageView
+            android:id="@+id/imageView3"
+            android:layout_width="148dp"
+            android:layout_height="wrap_content"
+            tools:srcCompat="@drawable/mist" />
+
     </LinearLayout>
 </LinearLayout>
