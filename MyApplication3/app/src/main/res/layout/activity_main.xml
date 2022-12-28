@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".MainActivity"
-    android:background="#e8f4f8"
+    android:background="#566573"
     android:orientation="vertical"
     android:padding="16dp">
     <TextView
@@ -14,48 +14,59 @@
         android:layout_gravity="center"
         android:textSize="40sp"
         android:text="Weather APP"/>
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="380dp"
+        android:layout_height="208dp"
+        android:gravity="center" />
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="428dp"
         android:gravity="center"
         android:orientation="vertical">
+
         <View
-            android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="1">
-        </View>
+            android:layout_width="397dp"
+            android:layout_height="269dp"
+            android:layout_weight="1"></View>
+
         <EditText
+            android:id="@+id/etCity"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/etCity"
             android:layout_marginBottom="10dp"
             android:ems="10"
             android:hint="Enter City Name"
             android:inputType="textPersonName" />
+
         <Button
+            android:id="@+id/btnGet"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/btnGet"
             android:layout_marginBottom="10dp"
             android:background="#0070c7"
-            android:textColor="@android:color/white"
             android:onClick="getWeatherDetails"
             android:text="Get Weather"
+            android:textColor="@android:color/white"
             app:backgroundTint="@null" />
+
         <ScrollView
             android:layout_width="match_parent"
             android:layout_height="50dp">
+
             <TextView
+                android:id="@+id/tvResult"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:id="@+id/tvResult" />
+                android:layout_height="wrap_content" />
         </ScrollView>
 
         <ImageView
             android:id="@+id/imageView3"
             android:layout_width="148dp"
             android:layout_height="wrap_content"
-            tools:srcCompat="@drawable/mist" />
+            tools:srcCompat="@drawable/img7" />
 
     </LinearLayout>
 </LinearLayout>
