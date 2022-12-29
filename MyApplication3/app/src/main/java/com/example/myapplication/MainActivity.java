@@ -8,7 +8,9 @@ import android.bluetooth.BluetoothManager;
 import android.bluetooth.BluetoothSocket;
 import android.content.Intent;
 import android.content.pm.PackageManager;
+import android.content.res.Resources;
 import android.graphics.Color;
+import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
@@ -62,10 +64,16 @@ public class MainActivity extends AppCompatActivity {
 
                 byte[] b = (byte[]) msg.obj;
                 String m = new String(b);
+                try {
+                    String[] cadena  = m.split("#");
+                    cadena = cadena[1].split(":");
+                    //textResult2.setText("");
+                    textResult2.setText("Lux: "+cadena[0]+"\nKelvin: "+cadena[1]+"\nCelsius: "+cadena[2]);
+                    Log.e("", "Msg is:" + m);
+                }catch (Exception e){
+                  //lectura incorrecta
+                }
 
-                textResult2.setText("");
-                textResult2.setText(m);
-                Log.e("", "Msg is:" + m);
 
         }
     };
@@ -81,9 +89,7 @@ public class MainActivity extends AppCompatActivity {
         textResult = findViewById(R.id.tvResult);
         textResult2 = findViewById(R.id.textView2);
         imageView = findViewById(R.id.imageView3);
-        BluetoothAdapter BA;
-        BA = BluetoothAdapter.getDefaultAdapter();
-        Intent turnOn = new Intent(BluetoothAdapter.ACTION_REQUEST_ENABLE);
+
         //startActivityForResult(turnOn, 0);
         connectBluetooth();
     }
@@ -267,28 +273,33 @@ public class MainActivity extends AppCompatActivity {
                         JSONArray jsonArray = jsonResponse.getJSONArray("weather");
                         JSONObject jsonObjectWeather = jsonArray.getJSONObject(0);
                         String description = jsonObjectWeather.getString("description");
+                        String id = jsonObjectWeather.getString("id");
                         JSONObject jsonObjectMain = jsonResponse.getJSONObject("main");
                         double temp = jsonObjectMain.getDouble("temp") - 273.15;
 
                         JSONObject jsonObjectSys = jsonResponse.getJSONObject("sys");
                         String countryName = jsonObjectSys.getString("country");
                         String cityName = jsonResponse.getString("name");
-                        String id = jsonResponse.getString("id");
                         textResult.setTextColor(Color.rgb(68,134,199));
 
                         output += "Current weather of " + cityName + " (" + countryName + ")"
                                 + "\n Temp: " + df.format(temp) + " °C"
                                 + "\n Description: " + description;
                         textResult.setText(output);
-                        imageView.setImageResource(R.drawable.shower);
 
-                      /*  Resources res = getResources();
-                        int resID = res.getIdentifier(description.split(" ")[0], "drawable", getPackageName());
+
+                        Resources res = getResources();
+                        String draw= "img";
+                        if(id.charAt(0)=='8'&&id.charAt(2)=='0'){
+                            draw+="80";
+                        }
+                        else
+                            draw+=id.charAt(0);
+
+                        int resID = res.getIdentifier(draw, "drawable", getPackageName());
                         Drawable drawable = res.getDrawable(resID );
                         imageView.setImageDrawable(drawable );
-                       // int hola= getResources().getIdentifier(description,"drawable",getPackageName());
-                        */
-                        //imageView.setImageResource(hola);
+
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }

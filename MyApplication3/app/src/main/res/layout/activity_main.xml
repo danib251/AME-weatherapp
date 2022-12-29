@@ -18,7 +18,7 @@
     <TextView
         android:id="@+id/textView2"
         android:layout_width="380dp"
-        android:layout_height="208dp"
+        android:layout_height="118dp"
         android:gravity="center" />
 
     <LinearLayout
@@ -26,11 +26,6 @@
         android:layout_height="428dp"
         android:gravity="center"
         android:orientation="vertical">
-
-        <View
-            android:layout_width="397dp"
-            android:layout_height="269dp"
-            android:layout_weight="1"></View>
 
         <EditText
             android:id="@+id/etCity"
